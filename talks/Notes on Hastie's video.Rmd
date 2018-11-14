@@ -1,0 +1,157 @@
+---
+title: "Trevor Hastie on Ensemble Methods"
+author: "Adam Ginensky"
+date: "November 14, 2018"
+output: slidy_presentation
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  Who is Trevor Hastie
+
+* Full details at his website, but...
+* He is a Professor of Statistics at Stanford. 
+* Among **many** achievements, he is one of the co-authors of "Elements of Statistical Learning".
+* This is the source for some of the material in the video and it is a VERY important work.
+* It is freely available on the web (from the authors homepage)- just google "Elements of Statistical Learning pdf".
+
+---
+
+### Who am I ?
+
+* I work for RJO doing risk management and some BI tasks.
+* I use R daily.
+* I was a floor trader on the CME for over 20 years and then became a quant.
+* I got my PhD. in mathematics in 2008 and that started my interest in statistics, ML, and coding.  
+
+
+---
+
+### A brief comment on variance and ensemble methods-
+
+* Suppose you had 3 people count how many people were in attendance at an event and they told you   
+  1. 50,70,90
+* A different group of 3 people gave you estimates of  
+  1. 68,66,71
+* Next time, if you could only use one person, would you pick someone from the first group or the second group ?
+* Obviously the second group. 
+* Suppose I told you that there were 70 people on the nose in attendance, would that effect your choice ?
+* I think not - that is low variance.  
+* Low variance means that the estimates are closely bunched and that *any given estimate is likely to be reliable* 
+
+---
+
+### A brief comment on ensemble methods-
+
+* In the talk Hastie says, that if you combine estimators, it reduces variance.
+* Simple formula, if X and Y are uncorrelated, then $Var(X+Y) = Var(X) + Var(Y)$
+* And so, if we average two independent estimators with the same variance, then $Var(\frac{X+Y}{2}) = \frac{1}{4}(Var(X)+Var(Y))) = \frac{1}{2} Var(X)$
+* That is ensembe methods are about.  
+* They reduce the expected error (variance) of an estimate.
+* Simple example- 
+* If I poll 3 (independent) experts, each of whom are correct 60% of the time, I will be right almost 65% of the times !
+
+---
+
+### The video 
+
+We will watch-
+
+1. 0:30 - 18:30 -the heart of the video, trees, bagging, random forests, and boosting)
+2. 18.30 - 25:45 -stage wise additive modeling- some mathematical details on how boosting is derived via loss functions (we won't watch, but really good stuff).
+3. 25:45 - 29:10 - tree size matters and variable importance
+4. 29:10 - 32:ish- learning ensembles and lasso (if time permits !)
+
+---
+
+## Get your popcorn, it's movie time !!
+
+---
+
+### Trees, Bagging, Random Forests, and Boosting- a summary.
+
+* Trees are not very good because they have high variance !
+* Bagging is really bootstraping- a very important idea in it's own right !
+* Random Forest is bootstrapping the data and the variables !
+* Boosting is something different !
+* It builds a series of models, each learning from the previous model.
+* adaboost or adaptive boosting was invented to solve a mathematical question and serves as a superb example of how mathematics can lead to useful results.  
+
+---
+
+### Software-
+
+* Talk mentions-
+  1. R !!!!
+  2. randomForest
+  3. gbm
+  4. $H_2O$
+* randomForest is a good implementation, but for really large size problems there are newer packages that are faster.
+* gbm is mostly not used anymore.  
+* xgboost (and lightning boost) are much faster implementations.  
+* In fact xgboost is a favorite for kaggle competitions.
+* $H_2O$ can be very useful- it is very fast on what it does.
+
+---
+  
+
+### A little code-
+
+* Random Forest can be implemented with the randomForest package (install.packages)
+* It uses the syntax of lm()
+
+```{r}
+library(randomForest)
+library(MASS) # for the boston data set- 
+summary(Boston)
+```
+
+---
+
+* Boston data set seeks to predict median value of a housev(medv) in a zone from other variables.
+* mtry is how many variables to select at each stage
+* Importance = T means keep variable importance. 
+* ntree is how many trees to grow.
+* Many other inputs, ?randomForest is your friend.
+* a simple implementation-
+
+---
+
+```{r}
+rf.mod = randomForest(medv~. , data = Boston, mtry = 5, ntrees = 1000)
+rf.pred = predict(rf.mod, data = Boston[,-13])
+mean((rf.pred-Boston$medv)^2) # average error 
+```
+
+---
+
+### xgboost
+
+* There are a lot more parameters with xgboost .
+* Caret can be a very efficient tool for hyperparameter selection ! 
+
+```{r, cache=T}
+library(xgboost)
+xgb.mod2 = xgboost(data =as.matrix(Boston[,-13]),label = Boston[,13] , max.depth = 2, eta = .01, verbose = 0, nthread=2,nrounds = 1000)
+xgb.mod1 = xgboost(data =as.matrix(Boston[,-13]),label = Boston[,13] , max.depth = 1, eta = .01, verbose = 0, nthread=2,nrounds = 1000)
+
+```
+
+```{r}
+xgb.pred1 = predict(xgb.mod1,newdata = as.matrix(Boston[,-13]))
+mean((xgb.pred1-Boston$medv)^2) # average error 
+```
+
+```{r}
+xgb.pred2 = predict(xgb.mod2,newdata = as.matrix(Boston[,-13]))
+mean((xgb.pred2-Boston$medv)^2) # average error 
+```
+```
+* Clearly a lot needs to be done with hyperparameters, but that is a talk for another day !
+
+---
+
+#  As always thanks for coming.
+
