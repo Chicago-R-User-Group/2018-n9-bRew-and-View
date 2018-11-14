@@ -1,0 +1,80 @@
+---
+title: "CRUG: bRew and View"
+author: " "
+date: "2018-08-30"
+output: RUGtools::intro_slides
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(RUGtools)
+```
+
+# Local R News
+
+## R User Group Slack: bit.ly/Slack-CRUG 
+
+![](images/slack_50x50.png) [bit.ly/Slack-CRUG](bit.ly/Slack-CRUG)
+
+**Also follow us:**
+
+![](images/GitHub-Mark.png) [Chicago-R-User-Group](https://twitter.com/ChicagoRusers)
+
+![](images/twitter50x41.png) @[ChicagoRusers](https://twitter.com/ChicagoRusers)
+
+## 2Q PGconf 2018 in Chicago: Dec 4th-5th
+
+Our co-organizer Parfait Gasana shall present!
+
+```{r, out.width = "150px", fig.align='left'}
+path2 <- paste0(getwd(), "/images/elephant.png")
+knitr::include_graphics(path2)
+```
+
+## 6th Annual Financial Engineering Colloquium: Artificial Intelligence in Finance
+
+- **When**: Friday, November 16, 2018 
+- **Where**: Illini Center, 200 South Wacker Drive
+- **Time**: 10:30 a.m. - 2:30 p.m.
+
+ 
+Confirmed Speakers Include:
+
+- Dr. Inderdeep Singh, AI in Derivative Markets 
+- Dr. Matthew Dixon, Equity Factor Modelling with ML 
+- Dr. Satya Dharanipragada, Algo Trading using DA & AI a personal viewpoint  
+- Dr. Mao Ye, Big Data in Finance 
+
+
+The event is complimentary but registration is required
+
+https://forms.illinois.edu/sec/3698221
+
+
+# Anyone hiring R folks? 
+
+# Today's meetup and its Sponsor
+
+
+## Today's Feature 
+
+
+- **Adam Ginensky presents**: 'Gradient Boosting Machine Learning' by Trevor Hastie at H20.ai World, 2014
+
+- **Irena Kaplan presents**: 'But When You Call Me Bayesian, I Know I’m Not the Only One' by Andrew Gelman at the New York R Conference, 2015.
+
+- **Justin Shea presents**: 'No-Bullshit Data Science' by Szilard Pfafka at R/Finance, 2017.
+
+Thanks again to Troy Hernandez and IBM for sponsoring today's meetup!
+
+```{r, out.width = "200px"}
+path <- paste0(getwd(), "/images/IBM-Logo.jpeg")
+knitr::include_graphics(path)
+```
+
+
+
+
+
+
