@@ -13,7 +13,7 @@ Trevor Hastie discusses trees, random forests, and boosting and how to implement
 
 Andrew Gelman's work on Bayesian statistics and the STAN project is well known. Sit back and watch as Gelman discusses different approaches to Bayesian statistics in the context of political races of past. An excellent talk for those wishing to understand Bayesian Statistics in an interesting and entertaining manner.
 
-## Justin Shea presents: ['No-Bullshit Data Science'](https://channel9.msdn.com/Events/RFinance/RFinance-2017/No-Bullshit-Data-Science) by Szilard Pfafka at R/Finance, 2017.
+## Justin Shea presents: ['No-Bullshit Data Science'](https://channel9.msdn.com/Events/RFinance/RFinance-2017/No-Bullshit-Data-Science) by Szilard Pafka at R/Finance, 2017.
 
 In his enlightening talks, Szilard has disbanded the myth of the superiority of "Big Data" tools as well "Deep learning" for most Data Science problems. Inviting us to look beyond the hype and focus on the practical application, he illustrates how R has what it takes not only to keep up, but to outperform, with bench-marked examples ranging from loading data to running machine learning models. For those focused on the practical and getting the job done, you'll love this talk.
 
